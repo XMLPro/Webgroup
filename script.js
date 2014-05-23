@@ -1,5 +1,6 @@
 
 $(window).load(function () {
+	$(".delete").hide();
 	var flag = true;
 	var t = $("#task").val();
 	$("#task").focus(function(){
@@ -32,6 +33,7 @@ $(window).load(function () {
 	$(document).on("click", "#cb", function(){
 		console.log("チェックされた");
 		$("#message").text("");
+		$(".delete").show();
 		$("input:checkbox").each(function(){
 			if(this.checked && flag == true && !($(this).hasClass("check"))){
 				console.log("確認");
@@ -54,15 +56,18 @@ $(window).load(function () {
 			$(this).parent().parent().remove();
 			}
 		});
+		$(this).hide();
 	});
 	$(document).on("click", ".achieve", function(){
 		console.log("達成ボタンが押された");
 		console.log(t);
+		$(".delete").hide();
 		$(this).parent().remove();
 		$("#message").text(t + "が達成されました!!!!");
 	});
 	$(document).on("click", ".edit", function(){
 		console.log("編集ボタンが押された");
+		$(".delete").hide();
 		//console.log($(this).parent());
 		//console.log($(this).prev().children());
 		$(this).prev().replaceWith("<input type='text' size=20' id='et'>");
@@ -73,8 +78,10 @@ $(window).load(function () {
 	$(document).on("click", ".done", function(){
 		console.log("完了ボタンが押された");
 		t = $(this).prev().val();
-		//console.log(t);
-		$(this).prev().replaceWith("<label><input type='checkbox' id='cb'><span id='t'>" + t + "</span></label>");
-		$(this).remove();
+			//console.log(t);
+			if(t != ""){
+			$(this).prev().replaceWith("<label><input type='checkbox' id='cb'><span id='t'>" + t + "</span></label>");
+			$(this).remove();
+		}
 	});
 });
