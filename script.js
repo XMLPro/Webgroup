@@ -2,30 +2,20 @@
 $(window).load(function () {
 	$(".delete").hide();
 	//var flag = true;
-	var t = $("#task").val();
-	$("#task").focus(function(){
+	var t = $(".task").val();
+	$(".task").focus(function(){
 		$("#message").text("");
 	});
 	$(".create").click(function(){
-		t = $("#task").val();
+		t = $(".task").val();
 		//var c = new RegExp("\s+");
 		if(t != ""/* && !(t.match(\s+)*/){
 			console.log("タスクが生成された！");
-			var text = $("#task").val("");
+			var text = $(".task").val("");
 			$("ul").prepend("<li name='li'><label><input type='checkbox'id='cb'><span class='t'>" + t + "</span></label></li>");
 		}
 	});
-	$("input:text").keypress(function(e){
-		if(e.which == 13 ){
-			var t = $("#task").val();
-			if(t != ""){
-			console.log("タスクが生成された！");
-			var text = $("#task").val("");
-			$("ul").prepend("<li name='li'><label><input type='checkbox'id='cb'><span class='t'>" + t + "</span></label></li>");
-			return false;
-			}
-		}
-	});
+
 
 
 	$(document).on("click", "#cb", function(){
@@ -46,7 +36,7 @@ $(window).load(function () {
 				$(this).removeClass("check");
 			}
 		});
-		//flag = true;
+		flag = true;
 	});
 	$(document).on("click", ".delete", function(){
 		$("input:checkbox").each(function(){
@@ -76,10 +66,45 @@ $(window).load(function () {
 	$(document).on("click", ".done", function(){
 		console.log("完了ボタンが押された");
 		t = $(this).prev().val();
-			//console.log(t);
-			if(t != ""){
+		//console.log(t);
+		if(t != ""){
 			$(this).prev().replaceWith("<label><input type='checkbox' id='cb'><span id='t'>" + t + "</span></label>");
 			$(this).remove();
+		}
+	});
+	
+/*	$("input:text").keypress(function(e){
+		if(e.which == 13 ){
+			if($(this).hasClass("task")){
+				var t = $(".task").val();
+				if(t != ""){
+					console.log("タスクが生成された！");
+					var text = $(".task").val("");
+					$("ul").prepend("<li name='li'><label><input type='checkbox'id='cb'><span class='t'>" + t + "</span></label></li>");
+					return false;
+				}
+			}
+		}
+	});*/
+	
+	$(document).on("keydown", function(e){
+		if(e.which == 13 ){
+			if($(this).find("input:text").hasClass("task")){
+				var t = $(".task").val();
+				if(t != ""){
+					console.log("タスクが生成された！");
+					var text = $(".task").val("");
+					$("ul").prepend("<li name='li'><label><input type='checkbox'id='cb'><span class='t'>" + t + "</span></label></li>");
+					return false;
+				}
+			}
+			console.log(this);
+			t = $("#et").val();
+			console.log(t);
+			if(t != ""){
+				$(".done").prev().replaceWith("<label><input type='checkbox' id='cb'><span id='t'>" + t + "</span></label>");
+				$(".done").remove();
+			}
 		}
 	});
 });
