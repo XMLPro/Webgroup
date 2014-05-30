@@ -3,10 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>ToDoリスト</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<p>
-	<input type="text" size="40"><input type="button"value="作成" onclick="createTask()">
-</p>
+<form name="form">
+
+	<input type="text" size="40" class="task">
+	<input type="button" value="作成" class="create">	
+
+<div id="todo" name="todo">
+	<ul style="list-style:none;">
+
+	</ul>
+	<input type="button" value="削除" class="delete">
+</div>
+</form>
+<span id="message"></span>
 </body>
 </html>
