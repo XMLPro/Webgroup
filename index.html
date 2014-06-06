@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+     <link href="css/layout.css" rel="stylesheet" >
+     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="container">
+    	<h1>To Do リスト</h1>
+    	<a class="btn btn-large" href=".modal" role="button" data-toggle="modal"><i class="icon-pencil"></i> Add</a>
+    </div>
+    <div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>add task</h3>
+  </div>
+  <div class="modal-body">
+    <input type="text">
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save task</a>
+  </div>
+</div>
+    <div class="container">
+    	<div class="row-fluid">
+  			<div class="span5">
+  				<ul>
+    				<li>aaaaaa</li>
+    				<li>bbbbbb</li>
+    				<li>cccccc</li>
+    			</ul>
+    		</div>
+  			<div class="span7">
+  				<p class="hidden-phone">calender</p>
+  			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="btn-group">
+			<a class="btn btn-large" href="#"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a>
+			<a class="btn btn-large" href="#"><i class="icon-trash"></i><span class="hidden-phone"> Trash</span></a>
+			<a class="btn btn-large" href="#"><i class="icon-ok"></i><span class="hidden-phone"> Achieve</span></a>
+		</div>
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+$('#myModal').on('show', function (e) {
+    if (!data) return e.preventDefault() // stops modal from being shown
+});
+</script>
+   <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
