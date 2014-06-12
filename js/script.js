@@ -2,7 +2,7 @@
 	$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		onSelect: function(){
-			var selectedDate = $("#datepicker").datepicker({dateFormat: "yy/mm/dd"}).val();
+			var selectedDate = $("#datepicker").datepicker({dateFormat: 'yy-mm-dd'}).val();
 			console.log(selectedDate);
 		}
 	});
@@ -11,13 +11,13 @@
 
 	$(document).on("click", "#create", function(){
 		console.log("saveボタンが押された！");
-		var t = $(this).parent().parent().find("#value").val();
+		var t = $(this).parent().parent().find("#Avalue").val();
 		console.log(this);
 		console.log(t);
 	
 		if(t != ""){
 			$("ul").prepend("<li>" + t + "</li>");
-			$(this).parent().parent().find("#value").val("");
+			$(this).parent().parent().find("#Avalue").val("");
 			$("#addTask").modal("toggle");
 		}
 	});
@@ -46,15 +46,23 @@
 		});
 		if(count == 1){
 			$("#editTask").modal("show");
+		/*	$("li").each(function(){
+				var flag = $(this).hasClass("selected");
+				if(flag){
+					console.log(this);
+					task = $(this).val();
+					console.log(task);
+				}
+			});*/
 			$(document).on("click", "#change", function(){
 				console.log("edit taskボタンが押された！");
-				var t = $(this).parent().parent().find("#value").val();
+				var t = $(this).parent().parent().find("#Evalue").val();
 				console.log(this);
 				console.log(t);
 	
 				if(t != ""){
 					$(".selected").replaceWith("<li>" + t + "</li>");
-					$(this).parent().parent().find("#value").val("");
+					$(this).parent().parent().find("#Evalue").val("");
 					$("#editTask").modal("hide");
 				}
 			});
