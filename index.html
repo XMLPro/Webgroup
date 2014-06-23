@@ -16,8 +16,10 @@
   </head>
   <body>
   	<div class="container">
+  		
+  		
     	<h1>To Do リスト</h1>
-    	<a class="btn btn-large" data-target="#addTask" role="button" data-toggle="modal" style="background: yellow; float: left;"><i class="icon-pencil"></i><span class="hidden-phone"> Add</span></a>
+    	<a class="btn btn-large" data-target="#addTask" role="button" data-toggle="modal" style="background: float: left;"><i class="icon-pencil"></i><span class="hidden-phone"> Add</span></a>
     	 <p class="visible-phone" style="float: right; padding-right: 3%;">date:<input type="text" id="date"></p>
     </div>
     <div id="addTask"class="modal hide fade" style="margin-top: 8%">
@@ -33,7 +35,7 @@
     <a href="#" class="btn btn-primary" id="create">Save task</a>
   </div>
 </div>
-    <div id="editTask"class="modal hide fade" style="margin-top: 8%">
+    <div id="editTask"class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>edit task</h3>
@@ -58,13 +60,14 @@
   			<div class="span7">
   				<div id="datepicker" class="hidden-phone" style="font-size: 150%; padding-left: 12%;"></div>
   			</div>
-		</div>
+		
 	</div>
 	<div class="container">
 		<div class="btn-group">
 			<a id="edit" class="btn btn-large" href="#"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a>
 			<a id="trash" class="btn btn-large" href="#"><i class="icon-trash"></i><span class="hidden-phone"> Trash</span></a>
 			<a id="achieve" class="btn btn-large" href="#"><i class="icon-ok"></i><span class="hidden-phone"> Achieve</span></a>
+		</div>
 		</div>
     </div>
 
