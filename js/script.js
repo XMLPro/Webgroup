@@ -16,7 +16,10 @@
 		console.log(t);
 	
 		if(t != ""){
-			$("ul").prepend("<li>" + t + "</li>");
+			$("<li>" + t + "</li>").prependTo("ul").hide().slideDown(900, function(){
+				$(this).show();
+			});
+			//$("ul").prepend("<li>" + t + "</li>").hide();
 			$(this).parent().parent().find("#Avalue").val("");
 			$("#addTask").modal("toggle");
 		}
@@ -37,15 +40,24 @@
 	$("#edit").click(function(){
 		console.log("editボタンが押された");
 		var count = 0;
+		var temp = "";
 		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
+				temp = $(this).text();
+				console.log(this);
+				console.log($(this).text());
 				count++;
 			}
 		});
 		if(count == 1){
 			$("#editTask").modal("show");
+			$("#Evalue").val(temp).focus(function(){
+				$(this).select();
+			}).on("click", function(){
+				$(this).select();
+			});
 		/*	$("li").each(function(){
 				var flag = $(this).hasClass("selected");
 				if(flag){
@@ -61,7 +73,7 @@
 				console.log(t);
 	
 				if(t != ""){
-					$(".selected").replaceWith("<li>" + t + "</li>");
+					$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
 					$(this).parent().parent().find("#Evalue").val("");
 					$("#editTask").modal("hide");
 				}
@@ -77,7 +89,9 @@
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				$(this).remove();
+				$(this).hide(700, function(){
+					$(this).remove();	
+				});
 			}
 		});
 	});
@@ -88,7 +102,9 @@
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				$(this).remove();
+				$(this).hide(700, function(){
+					$(this).remove();	
+				});
 			}
 		});
 	});
