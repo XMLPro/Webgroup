@@ -2,12 +2,14 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
+	<link href="css/newcomerlayout.css" rel="stylesheet" >
 	<title>新規登録</title>
 </head>
 <body>
-<form action="newcomer.php" method="post">
-	<input type="text" name="username">
-	<input type="submit" value="送信">
-</form>
+	<form action="newcomer.php" method="post">
+		<h1>User登録フォーム</h1>
+			<input type="text" id="txtInput" name="username" placeholder="Usernameを入力してください">
+			<input type="submit" id="send" value="送信">
+	</form>
 </body>
 </html>

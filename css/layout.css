@@ -1,7 +1,10 @@
 body{
-	background-color: rgba(49, 216, 0, 0.7);
+	background-color: rgba(0, 150, 0, 0.9);
 }
 
 #editTask{
 	 margin-top: 8%;
+}
+li{
+	cursor: pointer;
 }
