@@ -1,4 +1,4 @@
-﻿$(function(){
+$(function(){
 	$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		onSelect: function(){
@@ -16,9 +16,33 @@
 		console.log(t);
 	
 		if(t != ""){
-			$("ul").prepend("<li>" + t + "</li>");
-			$(this).parent().parent().find("#Avalue").val("");
-			$("#addTask").modal("toggle");
+			var d = false;
+			$("li").each(function(){
+				console.log($(this).text());
+				console.log(t);
+				if(t == $(this).text()){
+					d = true;
+				}
+			});
+			if(!d){
+				$("<li>" + t + "</li>").prependTo("ul").hide().slideDown(900, function(){
+					$(this).show();
+				});
+				if($("ul").height() >= 250){
+					$("#box").css("overflow-y", "scroll");
+				}	
+				//$("ul").prepend("<li>" + t + "</li>").hide();
+				$(this).parent().parent().find("#Avalue").val("");
+				$("#addTask").modal("toggle");
+			}else{
+				$("<p class='warning1'>違う名前を指定してください</p>").appendTo("#modal1").css("color", "red");
+				$("#Avalue").focus(function(){
+					$(".warning1").remove();
+					$(this).select();
+				}).on("click", function(){
+					$(this).select();
+				});
+			}
 		}
 	});
 	
@@ -37,23 +61,25 @@
 	$("#edit").click(function(){
 		console.log("editボタンが押された");
 		var count = 0;
+		var temp = "";
 		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
+				temp = $(this).text();
+				console.log(this);
+				console.log($(this).text());
 				count++;
 			}
 		});
 		if(count == 1){
 			$("#editTask").modal("show");
-		/*	$("li").each(function(){
-				var flag = $(this).hasClass("selected");
-				if(flag){
-					console.log(this);
-					task = $(this).val();
-					console.log(task);
-				}
-			});*/
+			$("#Evalue").val(temp).focus(function(){
+				$(this).select();
+			}).on("click", function(){
+				$(this).select();
+			});
+
 			$(document).on("click", "#change", function(){
 				console.log("edit taskボタンが押された！");
 				var t = $(this).parent().parent().find("#Evalue").val();
@@ -61,9 +87,9 @@
 				console.log(t);
 	
 				if(t != ""){
-					$(".selected").replaceWith("<li>" + t + "</li>");
-					$(this).parent().parent().find("#Evalue").val("");
-					$("#editTask").modal("hide");
+						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
+						$(this).parent().parent().find("#Evalue").val("");
+						$("#editTask").modal("hide");
 				}
 			});
 		//	$(".selected").css("color", "black");
@@ -77,19 +103,29 @@
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				$(this).remove();
+				$(this).hide(700, function(){
+					$(this).remove();	
+				});
 			}
 		});
+		if($("ul").height() >= 250){
+			$("#box").css("overflow", "hidden");
+		}
 	});
 	
 	$("#achieve").click(function(){
 		console.log("achieveボタンが押された");
-				$("li").each(function(){
+		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				$(this).remove();
+				$(this).hide(700, function(){
+					$(this).remove();	
+				});
 			}
 		});
+		if($("ul").height() >= 250){
+			$("#box").css("overflow", "hidden");
+		}
 	});
 });
