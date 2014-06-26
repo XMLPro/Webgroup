@@ -5,3 +5,16 @@ body{
 #editTask{
 	 margin-top: 8%;
 }
+li {
+	margin-bottom: 3%;
+	cursor: pointer;
+
+}
+#box{
+	background:#33FFFF; 
+	-webkit-border-radius: 10px;
+	height: 290px;
+	padding-left: 2%;
+	padding-top: 2%;
+  	overflow-y:hidden;
+}
