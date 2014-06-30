@@ -6,13 +6,15 @@
 </head>
 <body>
 <?php
+session_start();
 $dsn = 'mysql:dbname=WebGroup;host=localhost';
 $user = 'WebGroup';
 $password = 'divtyu';
 try{
     $dbh = new PDO($dsn, $user, $password);
 	if ($dbh == null){
-        header('Location: issue.html');
+        $_SESSION['error'] = '通信で問題が発生しました。';
+		header('Location: login.php');
 		exit();
     }
 	$dbh->query('SET NAMES UTF-8');
@@ -20,7 +22,8 @@ try{
 	$sql = 'select * from user';
     foreach ($dbh->query($sql) as $row) {    
         if($name == $row['password']){
-			header('Location: issue.html');
+			$_SESSION['test'] = 'その名前は既に使われています。';
+			header('Location: login.php');
 			exit();
 		}
     }
@@ -28,10 +31,13 @@ try{
 	$stmt = $dbh->prepare($sql);
 	$flag = $stmt->execute(array($name));
 	if ($flag){
-        header('Location: index.html');
+        header('Location: index.php');
+		$_SESSION['test'] = null;
+		$_SESSION['error'] = null;
 		exit();
     }else{
-        header('Location: issue.html');
+        $_SESSION['error'] = '通信で問題が発生しました。';
+		header('Location: login.php');
 		exit();
     }
 }catch (PDOException $e){
