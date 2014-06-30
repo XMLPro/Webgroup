@@ -1,7 +1,21 @@
 body{
-	background-color: rgba(49, 216, 0, 0.7);
+	background-color: rgba(0, 150, 0, 0.9);
 }
 
 #editTask{
 	 margin-top: 8%;
 }
+li {
+	margin-bottom: 3%;
+	cursor: pointer;
+
+}
+#box{
+	background:#33FFFF; 
+	-webkit-border-radius: 10px;
+	height: 290px;
+	padding-left: 2%;
+	padding-top: 2%;
+  	overflow-y:hidden;
+}
+

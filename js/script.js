@@ -1,4 +1,4 @@
-﻿$(function(){
+$(function(){
 	$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		onSelect: function(){
@@ -16,12 +16,33 @@
 		console.log(t);
 	
 		if(t != ""){
-			$("<li>" + t + "</li>").prependTo("ul").hide().slideDown(900, function(){
-				$(this).show();
+			var d = false;
+			$("li").each(function(){
+				console.log($(this).text());
+				console.log(t);
+				if(t == $(this).text()){
+					d = true;
+				}
 			});
-			//$("ul").prepend("<li>" + t + "</li>").hide();
-			$(this).parent().parent().find("#Avalue").val("");
-			$("#addTask").modal("toggle");
+			if(!d){
+				$("<li>" + t + "</li>").prependTo("ul").hide().slideDown(900, function(){
+					$(this).show();
+				});
+				if($("ul").height() >= 250){
+					$("#box").css("overflow-y", "scroll");
+				}	
+				//$("ul").prepend("<li>" + t + "</li>").hide();
+				$(this).parent().parent().find("#Avalue").val("");
+				$("#addTask").modal("toggle");
+			}else{
+				$("<p class='warning1'>違う名前を指定してください</p>").appendTo("#modal1").css("color", "red");
+				$("#Avalue").focus(function(){
+					$(".warning1").remove();
+					$(this).select();
+				}).on("click", function(){
+					$(this).select();
+				});
+			}
 		}
 	});
 	
@@ -58,14 +79,7 @@
 			}).on("click", function(){
 				$(this).select();
 			});
-		/*	$("li").each(function(){
-				var flag = $(this).hasClass("selected");
-				if(flag){
-					console.log(this);
-					task = $(this).val();
-					console.log(task);
-				}
-			});*/
+
 			$(document).on("click", "#change", function(){
 				console.log("edit taskボタンが押された！");
 				var t = $(this).parent().parent().find("#Evalue").val();
@@ -73,9 +87,9 @@
 				console.log(t);
 	
 				if(t != ""){
-					$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
-					$(this).parent().parent().find("#Evalue").val("");
-					$("#editTask").modal("hide");
+						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
+						$(this).parent().parent().find("#Evalue").val("");
+						$("#editTask").modal("hide");
 				}
 			});
 		//	$(".selected").css("color", "black");
@@ -94,11 +108,14 @@
 				});
 			}
 		});
+		if($("ul").height() >= 250){
+			$("#box").css("overflow", "hidden");
+		}
 	});
 	
 	$("#achieve").click(function(){
 		console.log("achieveボタンが押された");
-				$("li").each(function(){
+		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
@@ -107,5 +124,8 @@
 				});
 			}
 		});
+		if($("ul").height() >= 250){
+			$("#box").css("overflow", "hidden");
+		}
 	});
 });
