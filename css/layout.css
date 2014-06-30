@@ -1,5 +1,5 @@
 body{
-	background-color: rgba(0, 150, 0, 0.9);
+	background-image: url("path-to-stripe.png");
 }
 
 #editTask{
@@ -11,7 +11,7 @@ li {
 
 }
 #box{
-	background:#33FFFF; 
+	background-color: rgba(248, 91, 93, 1);
 	-webkit-border-radius: 10px;
 	height: 290px;
 	padding-left: 2%;
