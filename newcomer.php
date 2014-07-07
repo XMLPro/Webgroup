@@ -19,6 +19,11 @@ try{
     }
 	$dbh->query('SET NAMES UTF-8');
 	$name = $_POST['username'];
+	if($name == ""){
+		$_SESSION['tyu'] = '入力してください。';
+		header('Location: login.php');
+		exit();
+	}
 	$sql = 'select * from user';
     foreach ($dbh->query($sql) as $row) {    
         if($name == $row['password']){
@@ -32,8 +37,10 @@ try{
 	$flag = $stmt->execute(array($name));
 	if ($flag){
         header('Location: index.php');
-		$_SESSION['test'] = null;
-		$_SESSION['error'] = null;
+		$_SESSION['name'] = $name;
+		$_SESSION['test'] = NULL;
+		$_SESSION['error'] = NULL;
+		$_SESSION['tyu'] = NULL;
 		exit();
     }else{
         $_SESSION['error'] = '通信で問題が発生しました。';
