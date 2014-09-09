@@ -67,6 +67,7 @@ $(function(){
 		}
 	});
 
+	var before_t = "";
 	$("#edit").click(function(){
 		console.log("editボタンが押された");
 		var count = 0;
@@ -97,6 +98,15 @@ $(function(){
 	
 				if(t != ""){
 						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
+						$("ul").append("<li id='tusin'>通信中...</li>");
+						$.ajax({
+						   type: "POST",
+						   url: "edit.php",
+						   data: 'before=' + temp + '&after=' + t,
+						   success: function(){
+						     $('#tusin').remove();
+						   }
+						 });
 						$(this).parent().parent().find("#Evalue").val("");
 						$("#editTask").modal("hide");
 				}
