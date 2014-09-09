@@ -98,15 +98,6 @@ $(function(){
 	
 				if(t != ""){
 						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
-						$("ul").append("<li id='tusin'>通信中...</li>");
-						$.ajax({
-						   type: "POST",
-						   url: "edit.php",
-						   data: 'before=' + temp + '&after=' + t,
-						   success: function(){
-						     $('#tusin').remove();
-						   }
-						 });
 						$(this).parent().parent().find("#Evalue").val("");
 						$("#editTask").modal("hide");
 						$("ul").append("<li id='tusin'>通信中...</li>");
