@@ -20,7 +20,7 @@ try{
 	$sql = 'select * from user';
     foreach ($dbh->query($sql) as $row) {    
         if($name == $row['password']){
-			header('Location: index.html');
+			header('Location: index.php');
 			$_SESSION['name'] = $name;
 			$_SESSION['tyu1'] = NULL;
 			$_SESSION['error1'] = NULL;
