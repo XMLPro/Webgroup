@@ -32,16 +32,6 @@ $(function(){
 					$("#box").css("overflow-y", "scroll");
 				}	
 				//$("ul").prepend("<li>" + t + "</li>").hide();
-				$("ul").append("<li　id="tusin">通信中...</li>");
-				$.ajax({
-				   type: "POST",
-				   url: "add.php",
-				   data: "'task=' + t",
-				   success: function(msg){
-				     alert( "Data Saved!");
-				     $("#tusin").remove();
-				   }
-				 });
 				$(this).parent().parent().find("#Avalue").val("");
 				$("#addTask").modal("toggle");
 			}else{
