@@ -32,6 +32,15 @@ $(function(){
 					$("#box").css("overflow-y", "scroll");
 				}	
 				//$("ul").prepend("<li>" + t + "</li>").hide();
+				$("ul").append("通信中...");
+				$.ajax({
+				   type: "POST",
+				   url: "add.php",
+				   data: "'task=' + t",
+				   success: function(){
+				     alert("Data Saved");
+				   }
+				 });
 				$(this).parent().parent().find("#Avalue").val("");
 				$("#addTask").modal("toggle");
 			}else{
