@@ -99,6 +99,15 @@ $(function(){
 						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
 						$(this).parent().parent().find("#Evalue").val("");
 						$("#editTask").modal("hide");
+						$("ul").append("<li id='tusin'>通信中...</li>");
+				$.ajax({
+				   type: "POST",
+				   url: "edit.php",
+				   data: 'before=' + temp + '&after=' + t,
+				   success: function(){
+				     $('#tusin').remove();
+				   }
+				 });
 				}
 			});
 		//	$(".selected").css("color", "black");
@@ -108,12 +117,23 @@ $(function(){
 	
 	$("#trash").click(function(){
 		console.log("trashボタンが押された");
+		var temp = '';
 		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
+				temp = $(this).text();
 				$(this).hide(700, function(){
-					$(this).remove();	
+					$(this).remove();
+					$("ul").append("<li id='tusin'>通信中...</li>");
+				$.ajax({
+				   type: "POST",
+				   url: "trash.php",
+				   data: 'task=' + temp,
+				   success: function(){
+				     $('#tusin').remove();
+				   }
+				 });	
 				});
 			}
 		});
