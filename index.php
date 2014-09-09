@@ -73,8 +73,8 @@
 							
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
-								if($name == $row['password']){
-									?><li><?php $row['task'] ?></li><?php
+								if($_SESSION['name'] == $row['password']){
+									?><li><?php print $row['task'] ?></li><?php
 								}
 							}
 						}catch (PDOException $e){

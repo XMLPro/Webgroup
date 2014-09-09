@@ -32,13 +32,13 @@ $(function(){
 					$("#box").css("overflow-y", "scroll");
 				}	
 				//$("ul").prepend("<li>" + t + "</li>").hide();
-				$("ul").append("通信中...");
+				$("ul").append("<li id='tusin'>通信中...</li>");
 				$.ajax({
 				   type: "POST",
 				   url: "add.php",
-				   data: "'task=' + t",
+				   data: 'task=' + t,
 				   success: function(){
-				     alert("Data Saved");
+				     $('#tusin').remove();
 				   }
 				 });
 				$(this).parent().parent().find("#Avalue").val("");
