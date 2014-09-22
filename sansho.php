@@ -1,5 +1,6 @@
 <?php
 session_start();
+setcookie("visited",$_POST['username1']);
 $dsn = 'mysql:dbname=WebGroup;host=localhost';
 $user = 'WebGroup';
 $password = 'divtyu';
