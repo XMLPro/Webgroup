@@ -18,7 +18,7 @@
 		<?php session_start(); ?>
 		<p><div id="form">
 			<form action="sansho.php" method="post">
-				<strong>ユーザ名</strong> <input type="text" placeholder="username" name="username1">
+				<strong>ユーザ名</strong> <input type="text" placeholder="username" name="username1" value="<?php if(isset($_COOKIE["visited"])) echo $_COOKIE["visited"] ; ?>">
 				 <?php if(isset($_SESSION['tyu1'])): ?>
 					<p><?php echo $_SESSION['tyu1']; ?></p>
 					<?php $_SESSION['tyu1'] = NULL; ?>
