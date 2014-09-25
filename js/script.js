@@ -127,14 +127,14 @@ $(function(){
 				$(this).hide(700, function(){
 					$(this).remove();
 					$("ul").append("<li id='tusin'>通信中...</li>");
-				$.ajax({
-				   type: "POST",
-				   url: "trash.php",
-				   data: 'task=' + temp,
-				   success: function(){
-				     $('#tusin').remove();
-				   }
-				 });	
+					$.ajax({
+					   type: "POST",
+					   url: "trash.php",
+					   data: 'task=' + temp,
+					   success: function(){
+					     $('#tusin').remove();
+					   }
+					 });	
 				});
 			}
 		});
@@ -145,12 +145,23 @@ $(function(){
 	
 	$("#achieve").click(function(){
 		console.log("achieveボタンが押された");
+		var temp = '';
 		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
+			temp = $(this).text();
 			if(flag){
 				$(this).hide(700, function(){
-					$(this).remove();	
+					$(this).remove();
+					$("ul").append("<li id='tusin'>通信中...</li>");
+					$.ajax({
+					   type: "POST",
+					   url: "achieve.php",
+					   data: 'task=' + temp,
+					   success: function(){
+					     $('#tusin').remove();
+					   }
+					 });		
 				});
 			}
 		});
