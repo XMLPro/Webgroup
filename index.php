@@ -62,6 +62,7 @@
 						$dsn = 'mysql:dbname=WebGroup;host=localhost';
 						$user = 'WebGroup';
 						$password = 'divtyu';
+						$array = array();
 						try{
 							$dbh = new PDO($dsn, $user, $password);
 							if ($dbh == null){
@@ -77,6 +78,14 @@
 									?><li><?php print $row['task'] ?></li><?php
 								}
 							}
+							
+							$sql = 'select * from task';
+							foreach ($dbh->query($sql) as $row) {    
+								if($row['important'] == 1){
+									array_push($array,$row['task']);
+								}
+							}
+							$_SESSION['achieve'] = $array;
 						}catch (PDOException $e){
 							print('Error:'.$e->getMessage());
 							die();
