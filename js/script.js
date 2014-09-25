@@ -168,5 +168,10 @@ $(function(){
 		if($("ul").height() >= 250){
 			$("#box").css("overflow", "hidden");
 		}
+		if($(".boxSub").height() >= 250){
+			$("#boxSub").css("overflow-y", "scroll");
+		}
+		$("#box").toggle(2000);
+		$("#boxSub").toggle(2000);
 	});
 });

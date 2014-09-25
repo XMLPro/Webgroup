@@ -55,7 +55,8 @@
             
 		<div id="main" style="margin-top: 5%;">
    			<div class="row-fluid">
- 				 <div id="box"class="span5">
+ 				 <div class="span5">
+ 				 <div id="box">
   					<ul>
   					<?php
 						session_start();
@@ -93,6 +94,46 @@
 						$dbh = null;					
 					?>
     				</ul>
+    				</div>
+    				<div id="boxSub">
+  					<ul>
+  					<?php
+						session_start();
+						$dsn = 'mysql:dbname=WebGroup;host=localhost';
+						$user = 'WebGroup';
+						$password = 'divtyu';
+						$array = array();
+						try{
+							$dbh = new PDO($dsn, $user, $password);
+							if ($dbh == null){
+								$_SESSION['error1'] = '通信で問題が発生しました。';
+								header('Location: login.php');
+								exit();
+							}
+							$dbh->query('SET NAMES UTF-8');
+							
+							$sql = 'select * from task';
+							foreach ($dbh->query($sql) as $row) {    
+								if($_SESSION['name'] == $row['password']){
+									?><li><?php print $row['task'] ?></li><?php
+								}
+							}
+							
+							$sql = 'select * from task';
+							foreach ($dbh->query($sql) as $row) {    
+								if($row['important'] == 1){
+									array_push($array,$row['task']);
+								}
+							}
+							$_SESSION['achieve'] = $array;
+						}catch (PDOException $e){
+							print('Error:'.$e->getMessage());
+							die();
+						}
+						$dbh = null;					
+					?>
+    				</ul>
+    				</div>
     			</div>
   				<div class="span7">
   					<div id="datepicker" class="hidden-phone" style="font-size: 150%; padding-left: 12%;"></div>

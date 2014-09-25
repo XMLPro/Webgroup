@@ -13,11 +13,26 @@ li {
 #box{
 	background-color: rgba(248, 91, 93, 1);
 	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	height: 290px;
 	padding-left: 2%;
 	padding-top: 2%;
   	overflow-y:hidden;
 }
 #datepicker {
-	position: absolute;
+	position: fixed;
+	float: right;
+}
+.span7 {
+	float: right;
+}
+#boxSub {
+	display: none;
+	background: yellow;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	height: 290px;
+	padding-left: 2%;
+	padding-top: 2%;
+  	overflow-y:hidden;
 }
