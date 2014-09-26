@@ -74,7 +74,7 @@
 							
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
-								if($_SESSION['name'] == $row['password']){
+								if($_SESSION['name'] == $row['password'] && $row['important'] == 0){
 									?><li><?php print $row['task'] ?></li><?php
 								}
 							}
