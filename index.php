@@ -63,7 +63,6 @@
 						$dsn = 'mysql:dbname=WebGroup;host=localhost';
 						$user = 'WebGroup';
 						$password = 'divtyu';
-						$array = array();
 						try{
 							$dbh = new PDO($dsn, $user, $password);
 							if ($dbh == null){
@@ -80,13 +79,6 @@
 								}
 							}
 							
-							$sql = 'select * from task';
-							foreach ($dbh->query($sql) as $row) {    
-								if($row['important'] == 1){
-									array_push($array,$row['task']);
-								}
-							}
-							$_SESSION['achieve'] = $array;
 						}catch (PDOException $e){
 							print('Error:'.$e->getMessage());
 							die();
@@ -98,27 +90,19 @@
     				<div id="boxSub">
   					<ul>
   					<?php
-						session_start();
 						$dsn = 'mysql:dbname=WebGroup;host=localhost';
 						$user = 'WebGroup';
 						$password = 'divtyu';
 						$array = array();
-						try{
-							$dbh = new PDO($dsn, $user, $password);
+						try{		
+						$dbh = new PDO($dsn, $user, $password);
 							if ($dbh == null){
 								$_SESSION['error1'] = '通信で問題が発生しました。';
 								header('Location: login.php');
 								exit();
 							}
 							$dbh->query('SET NAMES UTF-8');
-							
-							$sql = 'select * from task';
-							foreach ($dbh->query($sql) as $row) {    
-								if($_SESSION['name'] == $row['password']){
-									?><li><?php print $row['task'] ?></li><?php
-								}
-							}
-							
+									
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
 								if($row['important'] == 1){
@@ -126,6 +110,11 @@
 								}
 							}
 							$_SESSION['achieve'] = $array;
+							if(count($_SESSION['achieve'])>0){
+								for($i = 0;$i<count($_SESSION['achieve']);$i++){
+									?><li><?php print $_SESSION['achieve'][$i] ?></li><?php
+								}
+							}
 						}catch (PDOException $e){
 							print('Error:'.$e->getMessage());
 							die();
