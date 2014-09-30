@@ -14,23 +14,40 @@
 			header('Location: login.php');
 			exit();
 		}
-	$dbh->query('SET NAMES UTF-8');
-	$achieve = h($_POST['task']);		
-	$sql = 'UPDATE task set important = 1 WHERE task = ?';
-	$stmt = $dbh->prepare($sql);
-	$flag = $stmt->execute(array($achieve));
-	
-	$sql = 'select * from task';
-	foreach ($dbh->query($sql) as $row) {    
-		if($row['important'] == 1){
-			array_push($array,$row['task']);
+		$dbh->query('SET NAMES UTF-8');
+		$achieve = h($_POST['task']);
+		
+		$sql = 'select * from task WHERE task = ?';
+		$stmt = $dbh->prepare($sql);
+		foreach ($dbh->execute(array($achieve)) as $row) {    
+			if($row['important'] == 1){
+				
+				$sql = 'UPDATE task set important = 0 WHERE task = ?';
+				$stmt = $dbh->prepare($sql);
+				$flag = $stmt->execute(array($achieve));
+				
+			}else{
+				
+				$sql = 'UPDATE task set important = 1 WHERE task = ?';
+				$stmt = $dbh->prepare($sql);
+				$flag = $stmt->execute(array($achieve));
+						
+			}
 		}
-	}
-	$_SESSION['achieve'] = $array;
+			
+		$sql = 'select * from task';
+		foreach ($dbh->query($sql) as $row) {    
+			if($row['important'] == 1){
+				array_push($array,$row['task']);
+			}
+		}
+		$_SESSION['achieve'] = $array;
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
 		die();
 	}
-	
+			
 	$dbh = null;
+		
+	
 ?>
