@@ -62,6 +62,7 @@
 						session_start();
 						$dsn = 'mysql:dbname=WebGroup;host=localhost';
 						$user = 'WebGroup';
+						
 						$password = 'divtyu';
 						try{
 							$dbh = new PDO($dsn, $user, $password);
