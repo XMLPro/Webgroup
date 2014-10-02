@@ -20,11 +20,17 @@
 			<a class="btn btn-large" data-target="#addTask" role="button" data-toggle="modal" style="background: float: left;"><i class="icon-pencil"></i><span class="hidden-phone"> Add</span></a>
 			<a id="edit" class="btn btn-large" href="#"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a>
 			<a id="trash" class="btn btn-large" href="#"><i class="icon-trash"></i><span class="hidden-phone"> Trash</span></a>
+            <!--
 			<a id="achieve" class="btn btn-large" href="#"><i class="icon-ok"></i><span class="hidden-phone"> Achieve</span></a>
+<<<<<<< HEAD
 			<a id="refresh" class="btn btn-large" href="#"><i class="icon-refresh"></i><span class="hidden-phone"> Refresh</span></a>
+=======
+            -->
 		</div>
 		<p class="visible-phone" style="padding-right: 3%;padding-top: 3%">date:<input type="text" id="date"></p>
-			
+		
+        <a class="btn btn-large" style="float:right" href="./login.php">Logout</a>
+        	
 		<div id="addTask"class="modal hide fade" style="margin-top: 8%">
   			<div class="modal-header">
     			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -55,7 +61,8 @@
             
 		<div id="main" style="margin-top: 5%;">
    			<div class="row-fluid">
- 				 <div id="box"class="span5">
+ 				 <div class="span5">
+ 				 <div id="box">
   					<ul>
   					<?php
 						session_start();
@@ -73,8 +80,45 @@
 							
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
-								if($_SESSION['name'] == $row['password']){
+								if($_SESSION['name'] == $row['password'] && $row['important'] == 0){
 									?><li><?php print $row['task'] ?></li><?php
+								}
+							}
+							
+						}catch (PDOException $e){
+							print('Error:'.$e->getMessage());
+							die();
+						}
+						$dbh = null;					
+					?>
+    				</ul>
+    				</div>
+    				<div id="boxSub">
+  					<ul>
+  					<?php
+						$dsn = 'mysql:dbname=WebGroup;host=localhost';
+						$user = 'WebGroup';
+						$password = 'divtyu';
+						$array = array();
+						try{		
+						$dbh = new PDO($dsn, $user, $password);
+							if ($dbh == null){
+								$_SESSION['error1'] = '通信で問題が発生しました。';
+								header('Location: login.php');
+								exit();
+							}
+							$dbh->query('SET NAMES UTF-8');
+									
+							$sql = 'select * from task';
+							foreach ($dbh->query($sql) as $row) {    
+								if($row['important'] == 1){
+									array_push($array,$row['task']);
+								}
+							}
+							$_SESSION['achieve'] = $array;
+							if(count($_SESSION['achieve'])>0){
+								for($i = 0;$i<count($_SESSION['achieve']);$i++){
+									?><li><?php print $_SESSION['achieve'][$i] ?></li><?php
 								}
 							}
 						}catch (PDOException $e){
@@ -84,6 +128,7 @@
 						$dbh = null;					
 					?>
     				</ul>
+    				</div>
     			</div>
   				<div class="span7">
   					<div id="datepicker" class="hidden-phone" style="font-size: 150%; padding-left: 12%;"></div>

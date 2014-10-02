@@ -1,6 +1,10 @@
 <?php
 session_start();
-setcookie("visited",$_POST['username1']);
+function h($s) {
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+}
+$name = h($_POST['username1']);
+setcookie("visited",$name);
 $dsn = 'mysql:dbname=WebGroup;host=localhost';
 $user = 'WebGroup';
 $password = 'divtyu';
@@ -12,7 +16,6 @@ try{
 		exit();
     }
 	$dbh->query('SET NAMES UTF-8');
-	$name = $_POST['username1'];
 	if($name == ""){
 		$_SESSION['tyu1'] = '入力してください。';
 		header('Location: login.php');

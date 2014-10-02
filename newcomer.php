@@ -7,6 +7,9 @@
 <body>
 <?php
 session_start();
+function h($s) {
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+}
 $dsn = 'mysql:dbname=WebGroup;host=localhost';
 $user = 'WebGroup';
 $password = 'divtyu';
@@ -18,7 +21,7 @@ try{
 		exit();
     }
 	$dbh->query('SET NAMES UTF-8');
-	$name = $_POST['username'];
+	$name = h($_POST['username']);
 	if($name == ""){
 		$_SESSION['tyu'] = '入力してください。';
 		header('Location: login.php');

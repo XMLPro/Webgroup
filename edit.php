@@ -2,7 +2,10 @@
 	session_start();
 	$dsn = 'mysql:dbname=WebGroup;host=localhost';
 	$user = 'WebGroup';
-	$password = 'divtyu';	
+	$password = 'divtyu';
+	function h($s) {
+    	return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+	}	
 	try{
 		$dbh = new PDO($dsn, $user, $password);
 		if ($dbh == null){
@@ -10,11 +13,11 @@
 			header('Location: login.php');
 			exit();
 		}
-		$dbh->query('SET NAMES UTF-8');
-			
+	$dbh->query('SET NAMES UTF-8');
+	$after = h($_POST['after']);		
 	$sql = 'UPDATE task SET task=? Where task=?';
 	$stmt = $dbh->prepare($sql);
-	$flag = $stmt->execute(array($_POST['after'],$_POST['before']));
+	$flag = $stmt->execute(array($after,$_POST['before']));
 	
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
