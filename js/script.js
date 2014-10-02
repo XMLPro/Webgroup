@@ -1,4 +1,7 @@
 $(function(){
+
+//    $('body').tubular({videoId: '_A3i2KorZCk'}); // where idOfYourVideo is the YouTube ID.
+
 	$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		onSelect: function(){
