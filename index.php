@@ -20,11 +20,17 @@
 			<a class="btn btn-large" data-target="#addTask" role="button" data-toggle="modal" style="background: float: left;"><i class="icon-pencil"></i><span class="hidden-phone"> Add</span></a>
 			<a id="edit" class="btn btn-large" href="#"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a>
 			<a id="trash" class="btn btn-large" href="#"><i class="icon-trash"></i><span class="hidden-phone"> Trash</span></a>
+            <!--
 			<a id="achieve" class="btn btn-large" href="#"><i class="icon-ok"></i><span class="hidden-phone"> Achieve</span></a>
+<<<<<<< HEAD
+			<a id="refresh" class="btn btn-large" href="#"><i class="icon-refresh"></i><span class="hidden-phone"> Refresh</span></a>
+=======
+            -->
 		</div>
-			
 		<p class="visible-phone" style="padding-right: 3%;padding-top: 3%">date:<input type="text" id="date"></p>
-			
+		
+        <a class="btn btn-large" style="float:right" href="./login.php">Logout</a>
+        	
 		<div id="addTask"class="modal hide fade" style="margin-top: 8%">
   			<div class="modal-header">
     			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
