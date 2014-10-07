@@ -16,19 +16,24 @@ $(function(){
 			//console.log(selectedDate);
 		}
 	});
-	
+
 
 	$(document).on("click", "#create", function(){
 		console.log("saveボタンが押された！");
 		var t = $(this).parent().parent().find("#Avalue").val();
+		var date = $(this).parent().parent().find(".taskCal").val();
 		console.log(this);
 		console.log(t);
-	
-		if(t != ""){
+		console.log(date);
+		var dateArray = date.split("/");
+		var Tdate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
+		console.log(Tdate);
+		if(t != "" && date != ""){
 			var d = false;
 			$("li").each(function(){
 				console.log($(this).text());
 				console.log(t);
+				
 				if(t == $(this).text()){
 					d = true;
 				}
@@ -45,7 +50,7 @@ $(function(){
 				$.ajax({
 				   type: "POST",
 				   url: "add.php",
-				   data: 'task=' + t,
+				   data: "'task=' + t, 'date=' + Tdate",
 				   success: function(){
 				     $('#tusin').remove();
 				   }
