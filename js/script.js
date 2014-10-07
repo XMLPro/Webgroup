@@ -34,7 +34,7 @@ $(function(){
 			$("li").each(function(){
 				console.log($(this).text());
 				console.log(t);
-				data = "task=" + t + ",date=" + Tdate;
+				data = {'task' : t , 'date': Tdate};
 				if(t == $(this).text()){
 					d = true;
 				}
