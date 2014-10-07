@@ -110,7 +110,7 @@ $(function(){
 				var t = $(this).parent().parent().find("#Evalue").val();
 				console.log(this);
 				console.log(t);
-	
+				var data = {'before' : temp, 'after' : t};
 				if(t != ""){
 						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
 						$(this).parent().parent().find("#Evalue").val("");
@@ -119,7 +119,7 @@ $(function(){
 				$.ajax({
 				   type: "POST",
 				   url: "edit.php",
-				   data: 'before=' + temp + '&after=' + t,
+				   data: data,
 				   success: function(){
 				     $('#tusin').remove();
 				   }
