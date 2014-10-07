@@ -10,6 +10,12 @@ $(function(){
 		}
 	});
 	$("#date").datepicker();
+	$(".taskCal").datepicker({
+		onSelect: function(){
+			var selectedDate = $("#datepicker").datepicker({dateFormat: 'yy-mm-dd'}).val();
+			//console.log(selectedDate);
+		}
+	});
 	
 
 	$(document).on("click", "#create", function(){

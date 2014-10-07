@@ -31,15 +31,17 @@
 		
         <a class="btn btn-large" style="float:right" href="./login.php">Logout</a>
         	
-		<div id="addTask"class="modal hide fade" style="margin-top: 8%">
+		<div id="addTask"class="modal hide fade" style="margin-top: 8%; height: 35%;">
   			<div class="modal-header">
     			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     			<h3>add task</h3>
   			</div>
   			<div id="modal1" class="modal-body">
-   				<input type="text" id="Avalue" placeholder="タスクを入力してください">
+   				<span>Task:</span>　<input type="text" id="Avalue" placeholder="タスクを入力してください"><br />
+   				<span>Date:</span> <input type="text" class="taskCal"> 　　　まで
+
   			</div>
-  			<div class="modal-footer">
+  			<div class="modal-footer" >
     			<a href="#" class="btn" data-dismiss="modal">Close</a>
    				<a href="#" class="btn btn-primary" id="create">Save task</a>
   			</div>
@@ -51,7 +53,8 @@
    				<h3>edit task</h3>
   			</div>
   			<div id="modal2"class="modal-body">
-    			<input type="text" id="Evalue">
+    			<span>Task:</span> <input type="text" id="Evalue">
+    			<span>Date:</span> <input type="text" class="taskCal"> 　　　まで
   			</div>
   			<div class="modal-footer">
     			<a href="#" class="btn" data-dismiss="modal">Close</a>
