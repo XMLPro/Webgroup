@@ -28,12 +28,13 @@ $(function(){
 		var dateArray = date.split("/");
 		var Tdate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
 		console.log(Tdate);
+		var data;
 		if(t != "" && date != ""){
 			var d = false;
 			$("li").each(function(){
 				console.log($(this).text());
 				console.log(t);
-				
+				data = "task=" + t + ",date=" + Tdate;
 				if(t == $(this).text()){
 					d = true;
 				}
@@ -50,7 +51,7 @@ $(function(){
 				$.ajax({
 				   type: "POST",
 				   url: "add.php",
-				   data: "'task=' + t, 'date=' + Tdate",
+				   data: data,
 				   success: function(){
 				     $('#tusin').remove();
 				   }
