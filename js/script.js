@@ -41,7 +41,7 @@ $(function(){
 				}
 			});
 			if(!d){
-				$("<li>" + t + "<span class='term'>" + term + "</span></li>").prependTo("ul").hide().slideDown(900, function(){
+				$("<li><span class='task'>" + t + "</span><span class='term'>" + term + "</span></li>").prependTo("ul").hide().slideDown(900, function(){
 					$(this).show();
 				});
 				if($("ul").height() >= 250){
@@ -92,9 +92,9 @@ $(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				temp = $(this).text();
+				temp = $(this).find(".task").text();
 				console.log(this);
-				console.log($(this).text());
+				console.log(temp);
 				count++;
 			}
 		});
@@ -120,7 +120,7 @@ $(function(){
 				console.log(term);
 
 				if(t != null && date != null){
-						$(".selected").replaceWith("<li class='hiding'>" + t + "<span class='term'>" + term + "</span></li>").show();
+						$(".selected").replaceWith("<li class='hiding'><span class='task'>" + t + "</span><span class='term'>" + term + "</span></li>").show();
 						$(this).parent().parent().find("#Evalue").val("");
 						$("#editTask").modal("hide");
 						$("ul").append("<li id='tusin'>通信中...</li>");
