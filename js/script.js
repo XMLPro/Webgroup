@@ -147,7 +147,7 @@ $(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
-				temp = $(this).text();
+				temp = $(this).find(".task").text();
 				console.log(temp);
 				array.push(temp);
 				//console.log(array);
