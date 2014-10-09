@@ -14,16 +14,17 @@
 			exit();
 		}
 	$dbh->query('SET NAMES UTF-8');
-	$delete = h($_POST['task']);		
-	$sql = 'DELETE FROM task WHERE task = :delete_task';
-	$stmt = $dbh->prepare($sql);
-	$flag = $stmt->execute(array(':delete_task' => $delete));
-	
+	$delete = h($_POST['task']);
+	for($i = 0; $i < $delete.length(); $i++){			
+		$sql = 'DELETE FROM task WHERE task = :delete_task';
+		$stmt = $dbh->prepare($sql);
+		$flag = $stmt->execute(array(':delete_task' => $delete[i]));
+	}
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
 		die();
 	}
 	
-	$dbh = null;	
+	$dbh = null;
 ?>
  
