@@ -22,9 +22,9 @@
 			<a id="trash" class="btn btn-large" href="#"><i class="icon-trash"></i><span class="hidden-phone"> Trash</span></a>
             <!--
 			<a id="achieve" class="btn btn-large" href="#"><i class="icon-ok"></i><span class="hidden-phone"> Achieve</span></a>
-<<<<<<< HEAD
+
 			<a id="refresh" class="btn btn-large" href="#"><i class="icon-refresh"></i><span class="hidden-phone"> Refresh</span></a>
-=======
+
             -->
 		</div>
 		<p class="visible-phone" style="padding-right: 3%;padding-top: 3%">date:<input type="text" id="date"></p>
@@ -53,7 +53,7 @@
    				<h3>edit task</h3>
   			</div>
   			<div id="modal2"class="modal-body">
-    			<span>Task:</span> <input type="text" id="Evalue">
+    			<span>Task:</span> <input type="text" id="Evalue"><br/>
     			<span>Date:</span> <input type="text" class="taskCal"> 　　　まで
   			</div>
   			<div class="modal-footer">
@@ -63,8 +63,10 @@
 		</div>
             
 		<div id="main" style="margin-top: 5%;">
+			<div class="title"><span class="itiran">タスク一覧</span><span class="simekiri">締切り</span></div>
    			<div class="row-fluid">
  				 <div class="span5">
+
  				 <div id="box">
   					<ul>
   					<?php

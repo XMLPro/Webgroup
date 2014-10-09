@@ -16,7 +16,7 @@ $(function(){
 			//console.log(selectedDate);
 		}
 	});
-
+	$(".title").width($("#box").width());
 
 	$(document).on("click", "#create", function(){
 		console.log("saveボタンが押された！");
@@ -27,6 +27,7 @@ $(function(){
 		console.log(date);
 		var dateArray = date.split("/");
 		var Tdate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
+		var term = dateArray[0] + "/" + dateArray[1];
 		console.log(Tdate);
 		var data;
 		if(t != "" && date != ""){
@@ -40,7 +41,7 @@ $(function(){
 				}
 			});
 			if(!d){
-				$("<li>" + t + "</li>").prependTo("ul").hide().slideDown(900, function(){
+				$("<li>" + t + "<span class='term'>" + term + "</span></li>").prependTo("ul").hide().slideDown(900, function(){
 					$(this).show();
 				});
 				if($("ul").height() >= 250){
@@ -110,16 +111,23 @@ $(function(){
 				var t = $(this).parent().parent().find("#Evalue").val();
 				console.log(this);
 				console.log(t);
-	
-				if(t != ""){
-						$(".selected").replaceWith("<li class='hiding'>" + t + "</li>").hide();
+				var date = $(this).parent().parent().find(".taskCal").val();
+				var dateArray = date.split("/");
+				var Tdate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
+				var term = dateArray[0] + "/" + dateArray[1];
+				console.log(Tdate);
+				console.log(date);
+				console.log(term);
+
+				if(t != null && date != null){
+						$(".selected").replaceWith("<li class='hiding'>" + t + "<span class='term'>" + term + "</span></li>").show();
 						$(this).parent().parent().find("#Evalue").val("");
 						$("#editTask").modal("hide");
 						$("ul").append("<li id='tusin'>通信中...</li>");
 				$.ajax({
 				   type: "POST",
 				   url: "edit.php",
-				   data: 'before=' + temp + '&after=' + t,
+				   data: 'before=' + temp + '&after=' + t + "&date=" + date,
 				   success: function(){
 				     $('#tusin').remove();
 				   }
@@ -142,7 +150,7 @@ $(function(){
 				temp = $(this).text();
 				console.log(temp);
 				array.push(temp);
-				console.log(array);
+				//console.log(array);
 				$(this).hide(700, function(){
 					$(this).remove();	
 				});
@@ -150,10 +158,11 @@ $(function(){
 		});
 		if (array.length != 0) {
 			$("ul").append("<li id='tusin'>通信中...</li>");
+			console.log(array);
 					$.ajax({
 					   type: "POST",
 					   url: "trash.php",
-					   data: {task : array},
+					   data: {'task' : array},
 					   success: function(){
 					     $('#tusin').remove();
 					   }
