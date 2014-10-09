@@ -140,6 +140,7 @@ $(function(){
 			var flag = $(this).hasClass("selected");
 			if(flag){
 				temp = $(this).text();
+				console.log(temp);
 				array.push(temp);
 				console.log(array);
 				$(this).hide(700, function(){
