@@ -14,10 +14,11 @@
 			exit();
 		}
 	$dbh->query('SET NAMES UTF-8');
-	$after = h($_POST['after']);		
-	$sql = 'UPDATE task SET task=? Where task=?';
+	$after = h($_POST['after']);
+	$date = h($_POST['date']);	
+	$sql = 'UPDATE task SET task=? , time=? Where task=?';
 	$stmt = $dbh->prepare($sql);
-	$flag = $stmt->execute(array($after,$_POST['before']));
+	$flag = $stmt->execute(array($after,$date,$_POST['before']));
 	
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
