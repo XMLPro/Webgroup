@@ -71,6 +71,7 @@
   					<ul>
   					<?php
 						session_start();
+						var_dump($_SESSION['hong']);
 						$dsn = 'mysql:dbname=WebGroup;host=localhost';
 						$user = 'WebGroup';
 						
@@ -87,7 +88,7 @@
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
 								if($_SESSION['name'] == $row['password'] && $row['important'] == 0){
-									?><li><?php print $row['task'] ?></li><?php
+									?><li><span class='task'><?php print $row['task'] ?></span><span class='term'><?php print $row['time'] ?></span></li><?php
 								}
 							}
 							

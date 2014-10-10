@@ -165,8 +165,9 @@ $(function(){
 					   type: "POST",
 					   url: "trash.php",
 					   data: {'task' : array},
-					   success: function(){
+					   success: function(data){
 					     $('#tusin').remove();
+						 console.log(data);
 					   }
 					 });
 			array = [];

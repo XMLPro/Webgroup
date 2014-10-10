@@ -15,6 +15,7 @@
 		}
 	$dbh->query('SET NAMES UTF-8');
 	$task = h($_POST['task']);
+	$_SESSION['hong'] = $task;
 	$date = h($_POST['date']);
 	$sql = 'INSERT INTO task (task,password,time) VALUES (?,?,?)';
 	$stmt = $dbh->prepare($sql);
