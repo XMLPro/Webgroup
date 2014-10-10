@@ -32,11 +32,11 @@ $(function(){
 		var data;
 		if(t != "" && date != ""){
 			var d = false;
+			data = {'task' : t , 'date': Tdate};
 			if($("li").size() > 0){
 				$("li").each(function(){
 					console.log($(this).text());
 					console.log(t);
-					data = {'task' : t , 'date': Tdate};
 					if(t == $(this).text()){
 						d = true;
 					}
