@@ -32,14 +32,16 @@ $(function(){
 		var data;
 		if(t != "" && date != ""){
 			var d = false;
-			$("li").each(function(){
-				console.log($(this).text());
-				console.log(t);
-				data = {'task' : t , 'date': Tdate};
-				if(t == $(this).text()){
-					d = true;
-				}
-			});
+			if($("li").size() > 0){
+				$("li").each(function(){
+					console.log($(this).text());
+					console.log(t);
+					data = {'task' : t , 'date': Tdate};
+					if(t == $(this).text()){
+						d = true;
+					}
+				});
+			}
 			if(!d){
 				$("<li><span class='task'>" + t + "</span><span class='term'>" + term + "</span></li>").prependTo("ul").hide().slideDown(900, function(){
 					$(this).show();
