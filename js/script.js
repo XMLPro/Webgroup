@@ -90,12 +90,14 @@ $(function(){
 		console.log("editボタンが押された");
 		var count = 0;
 		var temp = "";
+		var date;
 		$("li").each(function(){
 			console.log(this);
 			var flag = $(this).hasClass("selected");
 			if(flag){
 				temp = $(this).find(".task").text();
-				console.log(this);
+				date = $(this).find(".term").text();
+				console.log(date);
 				console.log(temp);
 				count++;
 			}
@@ -107,6 +109,7 @@ $(function(){
 			}).on("click", function(){
 				$(this).select();
 			});
+			$(".taskCal").val(date);
 
 			$(document).on("click", "#change", function(){
 				console.log("edit taskボタンが押された！");
