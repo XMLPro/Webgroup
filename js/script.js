@@ -32,7 +32,7 @@ $("#datepicker").datepicker({
 			}
 			console.log("qqq");
 		}
-		return [false, "", ""];
+		return [true, "", ""];
 
 
 	},onSelect: function(){
