@@ -110,7 +110,23 @@ footer p {
     margin: 0;
     padding: 50px 0;
 }
-
+.boxCenter {
+    padding-left: 25%;
+}
+.img-height {
+   
+    margin-right: 20px;
+}
+.img-size{
+    width: 180%;
+    height: 180%;
+    margin-top: 30px;
+}
+.txt-box {
+    height: 400px;
+    width: 400px;
+    margin-left: 360px;
+}
 @media screen and (min-width:768px) {
     .brand {
         display: inherit;
