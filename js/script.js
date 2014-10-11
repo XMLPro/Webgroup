@@ -180,7 +180,7 @@ $("#edit").click(function(){
 		});
 		var editDate;
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url: "edit_date.php",
 			data: 'task=' + temp,
 			success: function(data){
