@@ -178,7 +178,7 @@ $("#edit").click(function(){
 		}
 	});
 	if(count == 1){
-		$("#editTask").modal("show");
+		
 		$("#Evalue").val(temp).focus(function(){
 			$(this).select();
 		}).on("click", function(){
@@ -192,10 +192,11 @@ $("#edit").click(function(){
 			success: function(data){
 				editDate = data.split(" ");
 				console.log(editDate);
-
+				$(".taskCal").val(editDate[0]);
+				$("#editTask").modal("show");
 			}
 		});
-		$(".taskCal").val(editDate[0]);
+		
 			//$( ".taskCal" ).datepicker( "setDate", "2012-10-12" );
 			
 			$(document).on("click", "#change", function(){
