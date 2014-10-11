@@ -3,9 +3,6 @@
 	$dsn = 'mysql:dbname=WebGroup;host=localhost';
 	$user = 'WebGroup';
 	$password = 'divtyu';
-	function h($s) {
-    	return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
-	}	
 	try{
 		$dbh = new PDO($dsn, $user, $password);
 		if ($dbh == null){
@@ -14,16 +11,11 @@
 			exit();
 		}
 	$dbh->query('SET NAMES UTF-8');
-	$after = h($_POST['after']);
-	$date = h($_POST['date']);
-	$before = h($_POST['before']);
+	$before = h($_POST['task']);
 	$sql = 'SELECT * from task';
 	foreach ($dbh->query($sql) as $row) {    
 		if($_SESSION['name'] == $row['password'] && $before == $row['task']){
 			echo $row['time'];
-			$sql = 'UPDATE task SET task=? , time=? Where task=? AND password=?';
-			$stmt = $dbh->prepare($sql);
-			$flag = $stmt->execute(array($after,$date,$before,$_SESSION['name']));
 		}
 	}
 	
