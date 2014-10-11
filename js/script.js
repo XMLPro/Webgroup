@@ -201,7 +201,6 @@ $("#edit").click(function(){
 					$.ajax({
 						type: "POST",
 						url: "edit.php",
-						dataType: "json",
 						data: 'before=' + temp + '&after=' + t + "&date=" + date,
 						success: function(data){
 							$('#tusin').remove();
