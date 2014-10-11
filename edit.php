@@ -17,7 +17,7 @@
 	$after = h($_POST['after']);
 	$date = h($_POST['date']);
 	$before = h($_POST['before']);
-	$sql = 'SELECT time from task';
+	$sql = 'SELECT * from task';
 	foreach ($dbh->query($sql) as $row) {    
 		if($_SESSION['name'] == $row['password'] && $before == $row['task']){
 			echo $row['time'];						

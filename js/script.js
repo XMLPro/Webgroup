@@ -208,7 +208,7 @@ $("#edit").click(function(){
 							for (var i = 0; i < dateList.length; i++) {
 								if(dateList[i] == data){
 									dateList.splice(i, 1);
-									dateList.push(data);
+									dateList.push(date);
 								}
 							};
 							console.log(dateList);
