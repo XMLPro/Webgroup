@@ -15,10 +15,17 @@
 		}
 	$dbh->query('SET NAMES UTF-8');
 	$after = h($_POST['after']);
-	$date = h($_POST['date']);	
+	$date = h($_POST['date']);
+	$before = h($_POST['before']);
+	$sql = 'SELECT time from task';
+	foreach ($dbh->query($sql) as $row) {    
+		if($_SESSION['name'] == $row['password'] && $before == $row['task']){
+			echo $row['time'];						
+		}
+	}
 	$sql = 'UPDATE task SET task=? , time=? Where task=?';
 	$stmt = $dbh->prepare($sql);
-	$flag = $stmt->execute(array($after,$date,$_POST['before']));
+	$flag = $stmt->execute(array($after,$date,$before));
 	
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
