@@ -8,13 +8,12 @@ $.ajax({
 	dataType: "json",
 	url: "date.php",
 	success: function(data){
-		console.log(data.length);
+		console.log(data[0]);
 		for(var i=0; i<data.length; i++){
 			dateList.push(data[i]);
 		}
-	}
-});
-console.log(dateList);
+		console.log(dateList);
+		console.log(dateList);
 console.log(dateList[1]);
 $("#datepicker").datepicker({
 		//showButtonPanel: "true"
@@ -42,6 +41,9 @@ $("#datepicker").datepicker({
 	}
 });
 $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	}
+});
+
 	/*$( "#datepicker" ).datepicker( "option", {beforeShowDay: function(date) {
 	if (date.getDay() == 0) {
 	  // クラス名を設定
