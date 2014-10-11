@@ -33,7 +33,7 @@ $("#datepicker").datepicker({
 			console.log("qqq");
 		}
 		return [true, "", ""];
-
+		$(".kigen").parent().css("background", "red");
 
 	},onSelect: function(){
 		var selectedDate = $("#datepicker").datepicker().val();
