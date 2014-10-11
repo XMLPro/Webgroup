@@ -61,7 +61,7 @@ $(".taskCal").datepicker({
 	});
 $( ".taskCal" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-$(".title").width($("#box").width()+9);
+$(".title").width($("#box").width());
 
 $(document).on("click", "#create", function(){
 	console.log("saveボタンが押された！");
@@ -70,16 +70,10 @@ $(document).on("click", "#create", function(){
 	console.log(this);
 	console.log(t);
 	console.log(date);
-	var now = new Date();
-	var taskDate = new Date();
-	taskDate.setTime(Date.parse(date));
-	console.log(now.getDate());
-	console.log(taskDate.getDate());
-
 	var dateArray = date.split("-");
 	var term = dateArray[1] + "/" + dateArray[2];
 	var data;
-	if((t != "") && (date != "") && (now.getYear() <= taskDate.getYear()) && (now.getMonth() <= taskDate.getMonth()) && (now.getDate() <= taskDate.getDate())){
+	if(t != "" && date != ""){
 		var d = false;
 		data = {'task' : t , 'date': date};
 		if($("li").size() > 0){
@@ -208,7 +202,6 @@ $("#edit").click(function(){
 				var term = dateArray[1] + "/" + dateArray[2];
 				console.log(date);
 				console.log(term);
-				
 
 				if(t != null && date != null){
 					$(".selected").replaceWith("<li class='hiding'><span class='task'>" + t + "</span><span class='term'>" + term + "</span></li>").show();
