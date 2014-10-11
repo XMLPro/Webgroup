@@ -184,8 +184,18 @@ $("#edit").click(function(){
 		}).on("click", function(){
 			$(this).select();
 		});
+		var editDate;
+		$.ajax({
+			type: "GET",
+			url: "edit_date.php",
+			data: 'task=' + temp,
+			success: function(data){
+				editDate = data.split(" ");
+				console.log(editDate);
 
-		$(".taskCal").val(date);
+			}
+		});
+		$(".taskCal").val(editDate[0]);
 			//$( ".taskCal" ).datepicker( "setDate", "2012-10-12" );
 			
 			$(document).on("click", "#change", function(){
@@ -217,7 +227,7 @@ $("#edit").click(function(){
 									dateList.splice(i, 1);
 									dateList.push(date);
 								}
-							};
+							}
 							console.log(dateList);
 							$("#datepicker").datepicker("destroy");
 							$("#datepicker").datepicker({
