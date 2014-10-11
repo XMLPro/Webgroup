@@ -61,7 +61,7 @@ $(".taskCal").datepicker({
 	});
 $( ".taskCal" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
-$(".title").width($("#box").width());
+$(".title").width($("#box").width()+9);
 
 $(document).on("click", "#create", function(){
 	console.log("saveボタンが押された！");

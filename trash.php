@@ -17,9 +17,9 @@
 	$delete = $_POST['task'];
 	for($i = 0; $i < count($delete); $i++){
 		$delete_h = h($delete[$i]);			
-		$sql = 'DELETE FROM task WHERE task = :delete_task';
+		$sql = 'DELETE FROM task WHERE task = ? AND password=?';
 		$stmt = $dbh->prepare($sql);
-		$flag = $stmt->execute(array(':delete_task' => $delete_h));
+		$flag = $stmt->execute(array($delete_h,$_SESSION['name']));
 	}
 	}catch (PDOException $e){
 		print('Error:'.$e->getMessage());
