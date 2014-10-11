@@ -2,8 +2,15 @@ $(function(){
 
 //    $('body').tubular({videoId: '_A3i2KorZCk'}); // where idOfYourVideo is the YouTube ID.
 var dateList = [];
-dateList.push("2014-10-22");
-dateList.push("2014-10-23");
+
+$.ajax({
+	type: "GET",
+	url: "date.php",
+	success: function(data){
+		alert(data);
+		dateList = data;
+	}
+});
 console.log(dateList);
 console.log(dateList[1]);
 $("#datepicker").datepicker({
@@ -95,7 +102,7 @@ $(document).on("click", "#create", function(){
 				console.log(dateList);
 				$("#datepicker").datepicker("destroy");
 				$("#datepicker").datepicker({
-					
+
 					onSelect: function(){
 						var selectedDate = $("#datepicker").datepicker().val();
 						console.log(selectedDate);
@@ -190,7 +197,7 @@ $("#edit").click(function(){
 						type: "POST",
 						url: "edit.php",
 						data: 'before=' + temp + '&after=' + t + "&date=" + date,
-						success: function(){
+						success: function(data){
 							$('#tusin').remove();
 						}
 					});
@@ -198,7 +205,7 @@ $("#edit").click(function(){
 					console.log(dateList);
 					$("#datepicker").datepicker("destroy");
 					$("#datepicker").datepicker({
-						
+
 						onSelect: function(){
 							var selectedDate = $("#datepicker").datepicker().val();
 							console.log(selectedDate);
