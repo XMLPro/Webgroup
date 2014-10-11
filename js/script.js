@@ -5,10 +5,11 @@ var dateList = [];
 
 $.ajax({
 	type: "GET",
+	dataType: "json",
 	url: "date.php",
 	success: function(data){
-		//alert(data);
-		for(int i=0; i<data.length; i++){
+		console.log(data.length);
+		for(var i=0; i<data.length; i++){
 			dateList.push(data[i]);
 		}
 	}
