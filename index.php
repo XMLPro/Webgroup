@@ -86,7 +86,7 @@
 							
 							$sql = 'select * from task';
 							foreach ($dbh->query($sql) as $row) {    
-								if($_SESSION['name'] == $row['password'] && $row['important'] == 0){
+								if($_SESSION['name'] == $row['password']){
 									$pieces = explode(" ",$row['time']);
 									$piece = explode("-",$pieces[0]);
 									?><li><span class='task'><?php print $row['task'] ?></span><span class='term'><?php print $piece[1]."/".$piece[2] ?></span></li><?php
