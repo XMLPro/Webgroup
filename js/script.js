@@ -7,8 +7,10 @@ $.ajax({
 	type: "GET",
 	url: "date.php",
 	success: function(data){
-		alert(data);
-		dateList = data;
+		//alert(data);
+		for(int i=0; i<data.length; i++){
+			dateList.push(data[i]);
+		}
 	}
 });
 console.log(dateList);
