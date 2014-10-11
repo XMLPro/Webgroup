@@ -12,7 +12,7 @@
 		}
 	$dbh->query('SET NAMES UTF-8');
 	$array = array();
-	$$sql = 'select * from task';
+	$sql = 'select * from task';
 		foreach ($dbh->query($sql) as $row) {    
 			if($_SESSION['name'] == $row['password']){
 				if(!in_array($row['time'],$array)){
