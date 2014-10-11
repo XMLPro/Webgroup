@@ -14,8 +14,8 @@ $.ajax({
 		}
 		console.log(dateList);
 		console.log(dateList);
-console.log(dateList[1]);
-$("#datepicker").datepicker({
+		console.log(dateList[1]);
+		$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		beforeShowDay: function(date) {
 			for (var i = 0; i < dateList.length; i++) {
@@ -40,7 +40,7 @@ $("#datepicker").datepicker({
 		console.log(selectedDate);
 	}
 });
-$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	}
 });
 
@@ -201,37 +201,45 @@ $("#edit").click(function(){
 					$.ajax({
 						type: "POST",
 						url: "edit.php",
+						dataType: "json",
 						data: 'before=' + temp + '&after=' + t + "&date=" + date,
 						success: function(data){
 							$('#tusin').remove();
+							console.log(data);
+							for (var i = 0; i < dateList.length; i++) {
+								if(dateList[i] == data){
+									dateList.splice(i, 1);
+									dateList.push(data);
+								}
+							};
+							console.log(dateList);
+							$("#datepicker").datepicker("destroy");
+							$("#datepicker").datepicker({
+
+								onSelect: function(){
+									var selectedDate = $("#datepicker").datepicker().val();
+									console.log(selectedDate);
+								}, beforeShowDay: function(date) {
+									for (var i = 0; i < dateList.length; i++) {
+										var task_day = new Date();
+										task_day.setTime(Date.parse(dateList[i]));
+										console.log(task_day);  
+
+										if (task_day.getYear() == date.getYear() &&  
+											task_day.getMonth() == date.getMonth() &&
+											task_day.getDate() == date.getDate()) {
+											return [true, 'kigen', ''];
+									}
+								}
+								return [true, "", ""];
+							}
+						});
+							$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 						}
 					});
-					dateList.push(date);
-					console.log(dateList);
-					$("#datepicker").datepicker("destroy");
-					$("#datepicker").datepicker({
 
-						onSelect: function(){
-							var selectedDate = $("#datepicker").datepicker().val();
-							console.log(selectedDate);
-						}, beforeShowDay: function(date) {
-							for (var i = 0; i < dateList.length; i++) {
-								var task_day = new Date();
-								task_day.setTime(Date.parse(dateList[i]));
-								console.log(task_day);  
-
-								if (task_day.getYear() == date.getYear() &&  
-									task_day.getMonth() == date.getMonth() &&
-									task_day.getDate() == date.getDate()) {
-									return [true, 'kigen', ''];
-							}
-						}
-						return [true, "", ""];
-					}
-				});
-					$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-				}
-			});
+}
+});
 		//	$(".selected").css("color", "black");
 		//	$(".selected").removeClass("selected");
 	}
