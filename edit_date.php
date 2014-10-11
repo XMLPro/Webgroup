@@ -3,6 +3,9 @@
 	$dsn = 'mysql:dbname=WebGroup;host=localhost';
 	$user = 'WebGroup';
 	$password = 'divtyu';
+	function h($s) {
+    	return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+	}
 	try{
 		$dbh = new PDO($dsn, $user, $password);
 		if ($dbh == null){
