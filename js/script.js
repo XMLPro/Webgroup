@@ -284,6 +284,35 @@ $("#trash").click(function(){
 			success: function(data){
 				$('#tusin').remove();
 				console.log(data);
+				var date_no_time = data.split(" ");
+							for (var i = 0; i < dateList.length; i++) {
+								if(dateList[i] == date_no_time[0]){
+									dateList.splice(i, 1);
+								}
+							}
+							console.log(dateList);
+							$("#datepicker").datepicker("destroy");
+							$("#datepicker").datepicker({
+
+								onSelect: function(){
+									var selectedDate = $("#datepicker").datepicker().val();
+									console.log(selectedDate);
+								}, beforeShowDay: function(date) {
+									for (var i = 0; i < dateList.length; i++) {
+										var task_day = new Date();
+										task_day.setTime(Date.parse(dateList[i]));
+										console.log(task_day);  
+
+										if (task_day.getYear() == date.getYear() &&  
+											task_day.getMonth() == date.getMonth() &&
+											task_day.getDate() == date.getDate()) {
+											return [true, 'kigen', ''];
+									}
+								}
+								return [true, "", ""];
+							}
+						});
+							$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 			}
 		});
 		array = [];
