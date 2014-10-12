@@ -8,14 +8,11 @@ $.ajax({
 	dataType: "json",
 	url: "date.php",
 	success: function(data){
-		console.log(data[0]);
 		for(var i=0; i<date.length; i++){
 			var date_no_time = data[i].split(" ");
 			dateList.push(date_no_time[0]);
 		}
 		console.log(dateList);
-		console.log(dateList);
-		console.log(dateList[1]);
 		$("#datepicker").datepicker({
 		//showButtonPanel: "true"
 		beforeShowDay: function(date) {
@@ -24,14 +21,12 @@ $.ajax({
 				var set = Date.parse(dateList[i]);
 				var task_day = new Date();
 				task_day.setTime(set);  
-				console.log(date);
 				if (date.getYear() == task_day.getYear() &&  
 					date.getMonth() == task_day.getMonth() &&
 					date.getDate() == task_day.getDate()) {
-					console.log(dateList);
+					//console.log(dateList);
 				return [true, 'kigen', ''];
 			}
-			console.log("qqq");
 		}
 		return [true, "", ""];
 		$(".kigen").parent().css("background", "red");
@@ -116,7 +111,6 @@ $(document).on("click", "#create", function(){
 						for (var i = 0; i < dateList.length; i++) {
 							var task_day = new Date();
 							task_day.setTime(Date.parse(dateList[i]));
-							console.log(task_day);  
 
 							if (task_day.getYear() == date.getYear() &&  
 								task_day.getMonth() == date.getMonth() &&
@@ -162,7 +156,7 @@ $("#edit").click(function(){
 	var temp = "";
 	var date;
 	$("li").each(function(){
-		console.log(this);
+		//console.log(this);
 		var flag = $(this).hasClass("selected");
 		if(flag){
 			temp = $(this).find(".task").text();
@@ -186,7 +180,7 @@ $("#edit").click(function(){
 			data: 'task=' + temp,
 			success: function(data){
 				editDate = data.split(" ");
-				console.log(editDate);
+				//console.log(editDate);
 				$(".taskCal").val(editDate[0]);
 				$("#editTask").modal("show");
 			}
@@ -236,7 +230,7 @@ $("#edit").click(function(){
 									for (var i = 0; i < dateList.length; i++) {
 										var task_day = new Date();
 										task_day.setTime(Date.parse(dateList[i]));
-										console.log(task_day);  
+										//console.log(task_day);  
 
 										if (task_day.getYear() == date.getYear() &&  
 											task_day.getMonth() == date.getMonth() &&
@@ -263,7 +257,7 @@ $("#trash").click(function(){
 	var temp;
 	var array = [];
 	$("li").each(function(){
-		console.log(this);
+		//console.log(this);
 		var flag = $(this).hasClass("selected");
 		if(flag){
 			temp = $(this).find(".task").text();
@@ -306,7 +300,7 @@ $("#trash").click(function(){
 						for (var i = 0; i < dateList.length; i++) {
 							var task_day = new Date();
 							task_day.setTime(Date.parse(dateList[i]));
-							console.log(task_day);  
+							//console.log(task_day);  
 
 							if (task_day.getYear() == date.getYear() &&  
 								task_day.getMonth() == date.getMonth() &&
