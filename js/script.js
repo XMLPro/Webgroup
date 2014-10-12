@@ -9,8 +9,9 @@ $.ajax({
 	url: "date.php",
 	success: function(data){
 		console.log(data[0]);
+		var date_no_time = data[0].split(" ");
 		for(var i=0; i<data.length; i++){
-			dateList.push(data[i]);
+			dateList.push(date_no_time[0]);
 		}
 		console.log(dateList);
 		console.log(dateList);
@@ -216,10 +217,11 @@ $("#edit").click(function(){
 						success: function(data){
 							$('#tusin').remove();
 							console.log(data);
+							var date_no_time = data.split(" ");
 							for (var i = 0; i < dateList.length; i++) {
-								if(dateList[i] == data){
+								if(dateList[i] == date_no_time[0]){
 									dateList.splice(i, 1);
-									dateList.push(date);
+									dateList.push(date_no_time[0]);
 								}
 							}
 							console.log(dateList);
