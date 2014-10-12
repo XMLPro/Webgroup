@@ -9,8 +9,8 @@ $.ajax({
 	url: "date.php",
 	success: function(data){
 		console.log(data[0]);
-		var date_no_time = data[0].split(" ");
-		for(var i=0; i<data.length; i++){
+		for(var i=0; i<date.length; i++){
+			var date_no_time = data[i].split(" ");
 			dateList.push(date_no_time[0]);
 		}
 		console.log(dateList);
@@ -222,6 +222,7 @@ $("#edit").click(function(){
 								if(dateList[i] == date_no_time[0]){
 									dateList.splice(i, 1);
 									dateList.push(date_no_time[0]);
+									break;
 								}
 							}
 							console.log(dateList);
@@ -284,42 +285,46 @@ $("#trash").click(function(){
 			success: function(data){
 				$('#tusin').remove();
 				console.log(data);
-				var date_no_time = data.split(" ");
-							for (var i = 0; i < dateList.length; i++) {
-								if(dateList[i] == date_no_time[0]){
-									dateList.splice(i, 1);
-								}
-							}
-							console.log(dateList);
-							$("#datepicker").datepicker("destroy");
-							$("#datepicker").datepicker({
+				for (var i = 0; i < data.length; i++) {
+					var date_no_time = data.split(" ");
+					for(var j=0; j< dateList.length; j++){
+						if(dateList[i] == date_no_time[0]){
+							dateList.splice(i, 1);
+							break;
+						}
+					}
+					
+				}
+				console.log(dateList);
+				$("#datepicker").datepicker("destroy");
+				$("#datepicker").datepicker({
 
-								onSelect: function(){
-									var selectedDate = $("#datepicker").datepicker().val();
-									console.log(selectedDate);
-								}, beforeShowDay: function(date) {
-									for (var i = 0; i < dateList.length; i++) {
-										var task_day = new Date();
-										task_day.setTime(Date.parse(dateList[i]));
-										console.log(task_day);  
+					onSelect: function(){
+						var selectedDate = $("#datepicker").datepicker().val();
+						console.log(selectedDate);
+					}, beforeShowDay: function(date) {
+						for (var i = 0; i < dateList.length; i++) {
+							var task_day = new Date();
+							task_day.setTime(Date.parse(dateList[i]));
+							console.log(task_day);  
 
-										if (task_day.getYear() == date.getYear() &&  
-											task_day.getMonth() == date.getMonth() &&
-											task_day.getDate() == date.getDate()) {
-											return [true, 'kigen', ''];
-									}
-								}
-								return [true, "", ""];
-							}
-						});
-							$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+							if (task_day.getYear() == date.getYear() &&  
+								task_day.getMonth() == date.getMonth() &&
+								task_day.getDate() == date.getDate()) {
+								return [true, 'kigen', ''];
+						}
+					}
+					return [true, "", ""];
+				}
+			});
+				$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 			}
 		});
-		array = [];
-	};
-	if($("ul").height() >= 250){
-		$("#box").css("overflow", "hidden");
-	}
+array = [];
+};
+if($("ul").height() >= 250){
+	$("#box").css("overflow", "hidden");
+}
 });
 
 $("#achieve").click(function(){
