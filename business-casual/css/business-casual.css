@@ -136,8 +136,15 @@ footer p {
     height: 500px;
     margin-bottom: 20px;
 }
+.box-end{
+    height: 400px;
+}
 .navi {
     margin-bottom: 20px;
+}
+.top{
+    font-size: 20px;
+    text-align: center;
 }
 @media screen and (min-width:768px) {
     .brand {
