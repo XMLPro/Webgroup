@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bootstrap 101 Template</title>
+    <title>TODOリスト</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>To Do リスト</h1>
+	  <h1>To Do リスト</h1>
 		<div class="btn-group">
 			<a class="btn btn-large" data-target="#addTask" role="button" data-toggle="modal" style="background: float: left;"><i class="icon-pencil"></i><span class="hidden-phone"> Add</span></a>
 			<a id="edit" class="btn btn-large" href="#"><i class="icon-edit"></i><span class="hidden-phone"> Edit</span></a>
