@@ -9,9 +9,9 @@ $.ajax({
 	url: "date.php",
 	success: function(data){
 		for(var i=0; i<data.length; i++){
-			console.log(data);
+			//console.log(data);
 			var date_no_time = data[i].split(" ");
-			console.log(date_no_time);
+			//console.log(date_no_time);
 			dateList.push(date_no_time[0]);
 		}
 		console.log(dateList);
@@ -161,11 +161,16 @@ $("#edit").click(function(){
 		//console.log(this);
 		var flag = $(this).hasClass("selected");
 		if(flag){
-			temp = $(this).find(".task").text();
+			if($(this).find(".task").text() != null){
+				temp = $(this).find(".task").text();
+			}else{
+				temp = $(this).find(".task").val();
+			}
 			date = $(this).find(".term").text();
 			console.log(date);
 			console.log(temp);
 			count++;
+			}
 		}
 	});
 	if(count == 1){
