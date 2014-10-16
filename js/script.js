@@ -196,7 +196,12 @@ $("#edit").click(function(){
 			
 			$(document).on("click", "#change", function(){
 				console.log("edit taskボタンが押された！");
-				var t = $(this).parent().parent().find("#Evalue").val();
+				var t;
+				if($(this).parent().parent().find("#Evalue").val()){
+					t = $(this).parent().parent().find("#Evalue").val();
+				}else{
+					t = $(this).parent().parent().find("#Evalue").text();
+				}
 				console.log(this);
 				console.log(t);
 				var date = $(this).parent().parent().find(".taskCal").val();
@@ -207,7 +212,7 @@ $("#edit").click(function(){
 
 				if(t != null && date != null){
 					$(".selected").replaceWith("<li class='hiding'><span class='task'>" + t + "</span><span class='term'>" + term + "</span></li>").show();
-					$(this).parent().parent().find("#Evalue").val("");
+					//$(this).parent().parent().find("#Evalue").val("");
 					$("#editTask").modal("hide");
 					$("ul").append("<li id='tusin'>通信中...</li>");
 					$.ajax({
