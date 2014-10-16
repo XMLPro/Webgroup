@@ -170,7 +170,6 @@ $("#edit").click(function(){
 			console.log(date);
 			console.log(temp);
 			count++;
-			}
 		}
 	});
 	if(count == 1){
